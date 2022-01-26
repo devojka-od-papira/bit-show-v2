@@ -5,7 +5,7 @@ import DetailPage from "./view/detail";
 import AboutPage from "./view/about";
 import FavoritePage from "./view/favorites";
 import Header from "./components/header";
-import HeaderProvider from "./containers/headerContext";
+import HeaderProvider from "./context/headerContext";
 
 function App() {
   return (

@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Container, Flex, Box, Stack } from "@chakra-ui/react";
-import { HeaderContext } from "../../containers/headerContext";
+import { HeaderContext } from "../../context/headerContext";
+import ThemeSwitch from "../themeSwitch";
 
 function Header() {
   const { pages } = useContext(HeaderContext);
@@ -19,11 +20,11 @@ function Header() {
     >
       <Container maxW="container.md">
         <Box
-          style={{ backgroundColor: "violet" }}
+          display="flex"
+          justifyContent="space-between"
           flexBasis={{ base: "100%", md: "auto" }}
         >
           <Stack
-            style={{ backgroundColor: "red" }}
             spacing={8}
             align="center"
             justify={["center", "space-between", "flex-start", "flex-start"]}
@@ -38,6 +39,7 @@ function Header() {
               );
             })}
           </Stack>
+          <ThemeSwitch />
         </Box>
       </Container>
     </Flex>
