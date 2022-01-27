@@ -5,6 +5,7 @@ export const Context = React.createContext<any | null>(null);
 
 const Provider = ({ children }: any) => {
   const [shows, setShows] = useState([]);
+  const [favorites, setFavorites] = useState([]) as any;
 
   const pages = [
     {
@@ -21,8 +22,29 @@ const Provider = ({ children }: any) => {
     });
   }, []);
 
+  const selectFavoritesShow = (show: any) => {
+    const newFavorits = [...favorites, show];
+    setFavorites(newFavorits);
+  };
+  const unselectFavoritesShow = (id: number) => {
+    const filteredFavorites = favorites.filter((show: any) => {
+      return show.id !== id;
+    });
+    setFavorites(filteredFavorites);
+  };
+
   return (
-    <Context.Provider value={{ pages, shows }}>{children}</Context.Provider>
+    <Context.Provider
+      value={{
+        pages,
+        shows,
+        selectFavoritesShow,
+        favorites,
+        unselectFavoritesShow,
+      }}
+    >
+      {children}
+    </Context.Provider>
   );
 };
 export default Provider;

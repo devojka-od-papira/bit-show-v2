@@ -1,13 +1,14 @@
 import React, { useContext, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Container, Grid, GridItem } from "@chakra-ui/react";
 import { Context } from "./../../context/context";
 import Card from "./../../components/card";
 import SearchBar from "../../components/search";
 
 const HomePage = () => {
-  const { shows } = useContext(Context);
+  const location = useLocation();
+  const { shows, selectFavoritesShow } = useContext(Context);
   const [filterValue, setFilterValue] = useState("");
-
   const handleChange = (event: any) => {
     setFilterValue(event.target.value);
   };
@@ -24,14 +25,22 @@ const HomePage = () => {
               .map((show: any) => {
                 return (
                   <GridItem key={show.id} w="100%">
-                    <Card show={show} />
+                    <Card
+                      onSelect={() => selectFavoritesShow(show)}
+                      addIconActive={location.pathname === "/" ? true : false}
+                      show={show}
+                    />
                   </GridItem>
                 );
               })
           : shows.map((show: any) => {
               return (
                 <GridItem key={show.id} w="100%">
-                  <Card show={show} />
+                  <Card
+                    onSelect={() => selectFavoritesShow(show)}
+                    addIconActive={location.pathname === "/" ? true : false}
+                    show={show}
+                  />
                 </GridItem>
               );
             })}

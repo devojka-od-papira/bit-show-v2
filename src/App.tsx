@@ -16,7 +16,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/detail" element={<DetailPage />} />
-          <Route path="favorite" element={<FavoritePage />} />
+          <Route path="/favorite" element={<FavoritePage />} />
         </Routes>
       </Provider>
     </BrowserRouter>
