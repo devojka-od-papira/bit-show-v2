@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { getShows } from "../services";
+
+import { getDetailShow, getShows } from "../services";
 
 export const Context = React.createContext<any | null>(null);
 
 const Provider = ({ children }: any) => {
   const [shows, setShows] = useState([]);
   const [favorites, setFavorites] = useState([]) as any;
+  const [showDetail, setShowDetail] = useState(null);
 
   const pages = [
     {
@@ -32,6 +34,11 @@ const Provider = ({ children }: any) => {
     });
     setFavorites(filteredFavorites);
   };
+  const getShowId = (id: number) => {
+    getDetailShow(id).then((response) => {
+      setShowDetail(response);
+    });
+  };
 
   return (
     <Context.Provider
@@ -41,6 +48,8 @@ const Provider = ({ children }: any) => {
         selectFavoritesShow,
         favorites,
         unselectFavoritesShow,
+        getShowId,
+        showDetail,
       }}
     >
       {children}

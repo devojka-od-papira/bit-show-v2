@@ -11,7 +11,7 @@ type CardType = {
 
 const Card: React.FC<CardType> = ({ show, addIconActive, onSelect }) => {
   return (
-    <Box maxW="sm" borderWidth="1px" overflow="hidden">
+    <Box maxW="sm" borderWidth="1px" overflow="hidden" boxShadow="lg">
       <Box>
         <Link to={`/detail/${show.id}`}>
           <Image w="100%" h="400px" src={show.image.original} alt="" />
