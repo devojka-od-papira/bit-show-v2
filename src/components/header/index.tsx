@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Container, Flex, Box, Stack } from "@chakra-ui/react";
-import { HeaderContext } from "../../context/headerContext";
+import { Context } from "../../context/context";
 import ThemeSwitch from "../themeSwitch";
 
 function Header() {
-  const { pages } = useContext(HeaderContext);
+  const { pages } = useContext(Context);
   return (
     <Flex
       as="nav"
