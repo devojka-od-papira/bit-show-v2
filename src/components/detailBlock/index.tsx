@@ -42,7 +42,7 @@ const DetailSection = ({ showDetail }: any) => {
           </VStack>
         </GridItem>
       </Grid>
-      <Divider mt={8} />
+      <Divider mb="4" mt="4" />
     </Container>
   );
 };

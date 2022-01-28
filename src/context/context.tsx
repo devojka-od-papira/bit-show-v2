@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { getDetailShow, getShows } from "../services";
+import { getShows, getDetailShow, getActros } from "../services";
 
 export const Context = React.createContext<any | null>(null);
 
@@ -8,6 +8,7 @@ const Provider = ({ children }: any) => {
   const [shows, setShows] = useState([]);
   const [favorites, setFavorites] = useState([]) as any;
   const [showDetail, setShowDetail] = useState(null);
+  const [actrosDetail, setActrosDetail] = useState([]) as any;
 
   const pages = [
     {
@@ -39,6 +40,11 @@ const Provider = ({ children }: any) => {
       setShowDetail(response);
     });
   };
+  const getActrosId = (id: number) => {
+    getActros(id).then((response) => {
+      setActrosDetail(response);
+    });
+  };
 
   return (
     <Context.Provider
@@ -50,6 +56,8 @@ const Provider = ({ children }: any) => {
         unselectFavoritesShow,
         getShowId,
         showDetail,
+        getActrosId,
+        actrosDetail,
       }}
     >
       {children}
