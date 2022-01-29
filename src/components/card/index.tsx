@@ -7,14 +7,21 @@ type CardType = {
   show: any;
   addIconActive: boolean;
   onSelect: any;
+  location?: any;
 };
 
-const Card: React.FC<CardType> = ({ show, addIconActive, onSelect }) => {
+const Card: React.FC<CardType> = ({
+  show,
+  addIconActive,
+  onSelect,
+  location,
+}) => {
+  console.log("----", show);
   return (
     <Box maxW="sm" borderWidth="1px" overflow="hidden" boxShadow="lg">
       <Box>
         <Link to={`/detail/${show.id}`}>
-          <Image w="100%" h="400px" src={show.image.original} alt="" />
+          <Image w="100%" h="350px" src={show.image.original} alt="" />
         </Link>
       </Box>
       <Box p="6">
@@ -24,32 +31,38 @@ const Card: React.FC<CardType> = ({ show, addIconActive, onSelect }) => {
           </Text>
         </Box>
         <Box mt="2" display="flex" alignItems="center" justifyContent="start">
-          <Box ml="2" display="flex" alignItems="center">
-            {show.rating.average}
-            <StarIcon ml={5} color="yellow.400" />
-          </Box>
-          <Spacer />
-          {addIconActive === true ? (
-            <Box
-              as="button"
-              onClick={onSelect}
-              bg="black"
-              color="white"
-              px={4}
-              h={8}
-            >
-              <PlusSquareIcon color="yellow.400" />
+          {location?.pathname.includes("/detail") ? null : (
+            <Box ml="2" display="flex" alignItems="center">
+              {show.rating.average}
+              <StarIcon ml={5} color="yellow.400" />
             </Box>
-          ) : (
-            <Box
-              as="button"
-              onClick={onSelect}
-              bg="black"
-              color="white"
-              px={4}
-              h={8}
-            >
-              <DeleteIcon color="yellow.400" />
+          )}
+          <Spacer />
+          {location?.pathname.includes("/detail") ? null : (
+            <Box>
+              {addIconActive === true ? (
+                <Box
+                  as="button"
+                  onClick={onSelect}
+                  bg="black"
+                  color="white"
+                  px={4}
+                  h={8}
+                >
+                  <PlusSquareIcon color="yellow.400" />
+                </Box>
+              ) : (
+                <Box
+                  as="button"
+                  onClick={onSelect}
+                  bg="black"
+                  color="white"
+                  px={4}
+                  h={8}
+                >
+                  <DeleteIcon color="yellow.400" />
+                </Box>
+              )}
             </Box>
           )}
         </Box>

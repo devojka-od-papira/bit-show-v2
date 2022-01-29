@@ -26,9 +26,9 @@ const DetailSection = ({ showDetail }: any) => {
               <Text fontSize="4xl">{showDetail?.name}</Text>
             </Box>
             <Box>
-              {showDetail?.genres.map((genre: string) => {
+              {showDetail?.genres.map((genre: string, index: number) => {
                 return (
-                  <Tag mr={2} key={showDetail.id}>
+                  <Tag mr={2} key={index}>
                     {genre}
                   </Tag>
                 );

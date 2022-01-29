@@ -1,7 +1,33 @@
 import React from "react";
-import { Container, HStack, Box, Text, Spacer, Avatar } from "@chakra-ui/react";
+import {
+  Container,
+  HStack,
+  Box,
+  Text,
+  Spacer,
+  Avatar,
+  GridItem,
+  Grid,
+} from "@chakra-ui/react";
+import { DragHandleIcon, HamburgerIcon } from "@chakra-ui/icons";
+import Card from "./../card";
 
-const DetailList = ({ actrosDetail }: any) => {
+type ListType = {
+  actors: any;
+  handleGridActive: () => void;
+  gridActive: boolean;
+  onSelect: () => void;
+  location: any;
+};
+
+const DetailList: React.FC<ListType> = ({
+  actors,
+  handleGridActive,
+  gridActive,
+  location,
+  onSelect,
+}) => {
+  console.log("location", location);
   return (
     <Container maxW="container.md">
       <HStack mb="5">
@@ -10,16 +36,17 @@ const DetailList = ({ actrosDetail }: any) => {
         </Box>
         <Spacer />
         <Box>
-          <Box>ikonica</Box>
+          <Box as="button" onClick={handleGridActive}>
+            {gridActive ? <HamburgerIcon /> : <DragHandleIcon />}
+          </Box>
         </Box>
       </HStack>
-      {actrosDetail.length > 0
-        ? actrosDetail.map((actor: any) => {
+      {actors.length > 0 && gridActive
+        ? actors.map((actor: any) => {
             return (
-              <Box p={4} boxShadow="lg">
+              <Box key={actor.id} p={4} boxShadow="lg">
                 <HStack spacing={4}>
                   <Avatar
-                    key={actor.id}
                     name={actor.person.name}
                     src={actor.person.image.original}
                   />
@@ -29,6 +56,31 @@ const DetailList = ({ actrosDetail }: any) => {
             );
           })
         : null}
+      <Grid templateColumns="repeat(3, 1fr)" gap={6} pb="80px">
+        {actors.length > 0 && gridActive === false
+          ? actors.map((a: any, index: number) => {
+              const newObj = {
+                name: a.person.name,
+                image: {
+                  original: a.person.image.original,
+                },
+                rating: {
+                  average: "",
+                },
+              };
+              return (
+                <GridItem key={index} w="100%">
+                  <Card
+                    onSelect={() => console.log("sta se desi")}
+                    addIconActive={location.pathname === "/" ? true : false}
+                    show={newObj}
+                    location={location}
+                  />
+                </GridItem>
+              );
+            })
+          : null}
+      </Grid>
     </Container>
   );
 };

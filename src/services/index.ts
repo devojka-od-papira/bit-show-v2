@@ -24,7 +24,7 @@ export const getDetailShow = (id: number) => {
     });
 };
 
-export const getActros = (id: number) => {
+export const getActors = (id: number) => {
   return axios
     .get(`https://api.tvmaze.com/shows/${id}/cast`)
     .then((response) => {
