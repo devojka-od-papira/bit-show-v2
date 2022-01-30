@@ -16,7 +16,7 @@ const HomePage = () => {
 
   return (
     <>
-      <Container maxW="container.md">
+      <Container maxW="container.md" minH="100vh" position="relative">
         <SearchBar handleChange={handleChange} />
         <Grid templateColumns="repeat(3, 1fr)" gap={6} pb="80px">
           {filterValue.length > 0
