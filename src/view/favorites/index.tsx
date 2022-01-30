@@ -5,9 +5,7 @@ import { Context } from "../../context/context";
 import Card from "./../../components/card";
 import Footer from "../../components/footer";
 
-type FavoiteType = {};
-
-const FavoritePage: React.FC<FavoiteType> = () => {
+const FavoritePage = () => {
   const location = useLocation();
   const { favorites, unselectFavoritesShow } = useContext(Context);
   return (

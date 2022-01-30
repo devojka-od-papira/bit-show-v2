@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { Container } from "@chakra-ui/react";
