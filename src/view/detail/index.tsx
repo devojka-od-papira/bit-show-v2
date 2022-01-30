@@ -1,16 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { Container } from "@chakra-ui/react";
 import { Context } from "../../context/context";
 import DetailSection from "../../components/detailBlock";
 import DetailList from "../../components/detailList";
+import Footer from "../../components/footer";
 
 function DetailPage() {
   const { id } = useParams();
   const location = useLocation();
-  const { getShowId, showDetail, getActorsId, actors, selectFavoritesShow } =
-    useContext(Context);
+  const { getShowId, showDetail, getActorsId, actors } = useContext(Context);
 
   const [gridActive, setGridActive] = useState(true);
 
@@ -26,16 +25,18 @@ function DetailPage() {
   };
 
   return (
-    <Container maxW="container.md" centerContent>
-      <DetailSection showDetail={showDetail} />
-      <DetailList
-        handleGridActive={handleGridActive}
-        gridActive={gridActive}
-        actors={actors}
-        location={location}
-        onSelect={selectFavoritesShow}
-      />
-    </Container>
+    <>
+      <Container maxW="container.md" centerContent position="relative">
+        <DetailSection showDetail={showDetail} />
+        <DetailList
+          handleGridActive={handleGridActive}
+          gridActive={gridActive}
+          actors={actors}
+          location={location}
+        />
+      </Container>
+      <Footer />
+    </>
   );
 }
 export default DetailPage;

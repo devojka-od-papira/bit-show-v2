@@ -16,7 +16,6 @@ type ListType = {
   actors: any;
   handleGridActive: () => void;
   gridActive: boolean;
-  onSelect: () => void;
   location: any;
 };
 
@@ -25,9 +24,7 @@ const DetailList: React.FC<ListType> = ({
   handleGridActive,
   gridActive,
   location,
-  onSelect,
 }) => {
-  console.log("location", location);
   return (
     <Container maxW="container.md">
       <HStack mb="5">
@@ -71,7 +68,6 @@ const DetailList: React.FC<ListType> = ({
               return (
                 <GridItem key={index} w="100%">
                   <Card
-                    onSelect={() => console.log("sta se desi")}
                     addIconActive={location.pathname === "/" ? true : false}
                     show={newObj}
                     location={location}

@@ -6,7 +6,7 @@ import { StarIcon, PlusSquareIcon, DeleteIcon } from "@chakra-ui/icons";
 type CardType = {
   show: any;
   addIconActive: boolean;
-  onSelect: any;
+  onSelect?: any;
   location?: any;
 };
 
@@ -16,7 +16,6 @@ const Card: React.FC<CardType> = ({
   onSelect,
   location,
 }) => {
-  console.log("----", show);
   return (
     <Box maxW="sm" borderWidth="1px" overflow="hidden" boxShadow="lg">
       <Box>

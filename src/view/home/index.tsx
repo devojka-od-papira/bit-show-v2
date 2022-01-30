@@ -4,6 +4,7 @@ import { Container, Grid, GridItem } from "@chakra-ui/react";
 import { Context } from "./../../context/context";
 import Card from "./../../components/card";
 import SearchBar from "../../components/search";
+import Footer from "../../components/footer";
 
 const HomePage = () => {
   const location = useLocation();
@@ -14,15 +15,27 @@ const HomePage = () => {
   };
 
   return (
-    <Container maxW="container.md">
-      <SearchBar handleChange={handleChange} />
-      <Grid templateColumns="repeat(3, 1fr)" gap={6} pb="80px">
-        {filterValue.length > 0
-          ? shows
-              .filter((show: any) => {
-                return show.name.includes(filterValue);
-              })
-              .map((show: any) => {
+    <>
+      <Container maxW="container.md">
+        <SearchBar handleChange={handleChange} />
+        <Grid templateColumns="repeat(3, 1fr)" gap={6} pb="80px">
+          {filterValue.length > 0
+            ? shows
+                .filter((show: any) => {
+                  return show.name.includes(filterValue);
+                })
+                .map((show: any) => {
+                  return (
+                    <GridItem key={show.id} w="100%">
+                      <Card
+                        onSelect={() => selectFavoritesShow(show)}
+                        addIconActive={location.pathname === "/" ? true : false}
+                        show={show}
+                      />
+                    </GridItem>
+                  );
+                })
+            : shows.map((show: any) => {
                 return (
                   <GridItem key={show.id} w="100%">
                     <Card
@@ -32,20 +45,11 @@ const HomePage = () => {
                     />
                   </GridItem>
                 );
-              })
-          : shows.map((show: any) => {
-              return (
-                <GridItem key={show.id} w="100%">
-                  <Card
-                    onSelect={() => selectFavoritesShow(show)}
-                    addIconActive={location.pathname === "/" ? true : false}
-                    show={show}
-                  />
-                </GridItem>
-              );
-            })}
-      </Grid>
-    </Container>
+              })}
+        </Grid>
+      </Container>
+      <Footer />
+    </>
   );
 };
 export default HomePage;
